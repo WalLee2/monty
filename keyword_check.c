@@ -7,8 +7,8 @@
  */
 void keyw_check(char *u_input, int l_num, stack_t **stk)
 {
-        char *output, *tok_u_input;
-        int a;
+	char *output, *tok_u_input;
+	int a;
 	instruction_t key[] = {
 		{"push", push_func},
 		{"pall", pall_func},
@@ -16,13 +16,13 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 		{"pop", pop_func},
 		{"swap", swap_func},
 		{"add", add_func},
-                {NULL, NULL}
-        };
+		{NULL, NULL}
+	};
 
-        tok_u_input = strtok(u_input, "\n \t");
-        for (a = 0; key[a].opcode != NULL && tok_u_input != NULL; a++)
-        {
-                if (strcmp(tok_u_input, key[a].opcode) == 0)
+	tok_u_input = strtok(u_input, "\n \t");
+	for (a = 0; key[a].opcode != NULL && tok_u_input != NULL; a++)
+	{
+		if (strcmp(tok_u_input, key[a].opcode) == 0)
 		{
 			if (strcmp(tok_u_input, "push") == 0)
 			{
