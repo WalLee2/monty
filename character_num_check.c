@@ -12,12 +12,15 @@ void Chk(instruction_t key[], const char *out, stack_t **stack, int l_n, int a)
 	int num, i, check;
 
 	num = i = check = 0;
+	if (out == NULL)
+		return;
 	for (i = 0; out[i] != '\0'; i++)
 	{
-		if (!(out[i] >= '0' && out[i] <= '9'))
+		if (out[i] < '0' || out[i] > '9')
 		{
-			printf("L<%d>: usage: push integer\n", l_n);
+			printf("L%d: usage: push integer\n", l_n);
 			errorHandling = 1;
+			return;
 		}
 	}
 	num = atoi(out);

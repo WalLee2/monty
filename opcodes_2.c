@@ -13,7 +13,7 @@ void add_func(stack_t **stack, unsigned int num)
 	(*stack) = (*stack)->next;
 	if (temp == NULL)
 	{
-		printf("L<%d>: can't add, stack too short\n", num);
+		printf("L%d: can't add, stack too short\n", num);
 		errorHandling = 1;
 	}
 	else

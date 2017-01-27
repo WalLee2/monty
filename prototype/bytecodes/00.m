@@ -2,13 +2,19 @@ push 1
  push            2
        push             3
 
-pall
+
+pall                 
            push            4
+
 pint
 push 5
+
 pint
+push 
+push hello
 push 6
 pint
+
 pall
 pop
 pall
