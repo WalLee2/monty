@@ -1,45 +1,45 @@
 #include "monty_proto.h"
 /**
- *
- *
+ *main - function that reads from file and looks for opcodes
+ *@argc: Number of arguments passed
+ *@argv: Storing the user input as an array of characters.
+ *Return: 0 on success.
  */
+int errorHandling = 0;
+
 int main(int argc, char *argv[])
 {
-        char *u_input, *tok_u_input;
-        FILE *fp;
-        size_t num;
+	char *u_input;
+	FILE *fp;
+	size_t num;
 	int l_num;
-        stack_t *head;
+	stack_t *head;
 
 	head = NULL;
-        if (argc != 2)
-        {
-                printf("USAGE: monty file\n");
-                exit(EXIT_FAILURE);
-        }
-        fp = fopen(argv[1], O_RDONLY);
-        if (fp == NULL)
-                printf("Error: Can't open file %s", argv[1]);
-	printf("Error checked successfully after opening file\n");
-/*        stack = malloc(sizeof(stack_t));
-        if (stack == NULL)
-                return (NULL);
-        if (*head != NULL)
-        {
-                while ((*head)->prev != NULL)
-                        *head = (*head)->prev;
-                (*head)->prev = stack;
-        }
-        stack->prev = NULL;
-*/
-        l_num = 1;
-	printf("I'm here before getline\n");
+	fp = NULL;
+	u_input = NULL;
+	if (argc != 2)
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	fp = fopen(argv[1], "r");
+	if (fp == NULL)
+	{
+		printf("Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+	l_num = 1;
 	num = 0;
-        for (l_num = 1; (getline(&u_input, &num, fp)) != -1; l_num++)
-        {
-		printf("line_number = %d, user_input = %s", l_num, u_input);
-		tok_u_input = strtok(u_input, "\n  \t");
-                keyw_check(tok_u_input, l_num, &head);
-        }
+	for (l_num = 1; (getline(&u_input, &num, fp)) != -1; l_num++)
+	{
+		keyw_check(u_input, l_num, &head);
+		if (errorHandling != 0)
+		{
+			free_this(u_input, head, fp);
+			exit(EXIT_FAILURE);
+		}
+	}
+	free_this(u_input, head, fp);
 	return (0);
 }

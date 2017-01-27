@@ -1,45 +1,38 @@
 #include "monty_proto.h"
-void keyw_check(char *tok_u_input, int l_num, stack_t **stk)
+/**
+ *keyw_check - Function that looks for the opcode.
+ *@u_input: The user input passed from the getline function.
+ *@l_num: Line number of the user input being evaluated.
+ *@stk: The head pointer for doubly linked list.
+ */
+void keyw_check(char *u_input, int l_num, stack_t **stk)
 {
-        char *output;
-        int a, result;
+        char *output, *tok_u_input;
+        int a;
 	instruction_t key[] = {
 		{"push", push_func},
+		{"pall", pall_func},
+		{"pint", pint_func},
+		{"pop", pop_func},
+		{"swap", swap_func},
+		{"add", add_func},
                 {NULL, NULL}
         };
 
-        /*tok_u_input = strtok(u_input, "\n  \t");*/
-	printf("I'm here before the struct loop\n");
-        for (a = 0; key[a].opcode != NULL;)
+        tok_u_input = strtok(u_input, "\n \t");
+        for (a = 0; tok_u_input != NULL && key[a].opcode != NULL; a++)
         {
                 if (strcmp(tok_u_input, key[a].opcode) == 0)
 		{
-			if (result == 0 && strcmp(tok_u_input, "push") == 0)
+			if (strcmp(tok_u_input, "push") == 0)
 			{
 				output = strtok(NULL, "\n \t");
 				Chk(key, output, stk, l_num, a);
 			}
-
-/*                        if ((output[i] >= '0' && output[i] <= '9')
-                            && output[i] != '\0' &&
-                            output[i + 1] != >= 'a'  <= 'z' )
-                        {
-                                num = atoi(output);
-                                funcs[a].f(stack, num);
-                        }
-                        else
-                        {
-				printf("L%d: usage: push integer", l_num);
-				exit(EXIT_FAILURE);
-                        }
-                }
-                else if (result == 1 && strcmp(tok_u_input, "pall") == 1)
-                {
-                        funcs[a].f();
-		}
-*/
-		else if (result == -1)
-			a++;
+			else if (strcmp(tok_u_input, "nop") == 0)
+				continue;
+			else
+				key[a].f(stk, l_num);
 		}
 	}
 }
