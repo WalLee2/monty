@@ -27,7 +27,8 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 			if (strcmp(tok_u_input, "push") == 0)
 			{
 				output = strtok(NULL, "\n \t");
-				Chk(key, output, stk, l_num, a);
+				if (output != NULL)
+					Chk(key, output, stk, l_num, a);
 			}
 			else if (strcmp(tok_u_input, "nop") == 0)
 				continue;
