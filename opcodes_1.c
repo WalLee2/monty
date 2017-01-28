@@ -1,4 +1,4 @@
-#include "monty_proto.h"
+#include "monty.h"
 /**
  *push_func - opcode that calls add_node to start creating the linked list.
  *@stack: Reference to the linked list.
