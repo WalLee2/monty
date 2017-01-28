@@ -53,7 +53,6 @@ void pop_func(stack_t **stack, unsigned int num)
 	temp = *stack;
 	if (temp != NULL)
 	{
-		printf("pop_func: %d\n", temp->n);
 		*stack = (*stack)->next;
 		free(temp);
 		if (*stack != NULL)
