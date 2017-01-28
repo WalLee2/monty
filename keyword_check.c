@@ -22,6 +22,7 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 	{
 		if (strcmp(tok_u_input, key[a].opcode) == 0)
 		{
+			printf("tok_u_input = %s\n", tok_u_input);
 			if (strcmp(tok_u_input, "push") == 0)
 			{
 				output = strtok(NULL, "\n \t");
@@ -40,10 +41,10 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 				key[a].f(stk, l_num);
 			break;
 		}
-	}
-	if (key[a].opcode == NULL)
-	{
-		printf("L%d:unknown instruction %s\n", l_num, u_input);
-		errorHandling = 1;
+		else if (key[a].opcode == NULL)
+		{
+			printf("L%d:unknown instruction %s\n", l_num, u_input);
+			errorHandling = 1;
+		}
 	}
 }
