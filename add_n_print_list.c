@@ -4,7 +4,7 @@
  *The framework for the stack and queue.
  *@head: The pointer that will hold reference to the list.
  *@num: The line number currently being evaluated.
- *Return - 0 on success, -1 on failure.
+ *Return: 0 on success, -1 on failure.
  */
 int add_node(stack_t **head, unsigned int num)
 {
