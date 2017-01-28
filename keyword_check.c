@@ -42,4 +42,6 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 				key[a].f(stk, l_num);
 		}
 	}
+	printf("L%d: unknown instruction %s\n", l_num, u_input);
+	errorHandling = 1;
 }
