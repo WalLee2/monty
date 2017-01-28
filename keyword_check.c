@@ -22,16 +22,19 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 	tok_u_input = strtok(u_input, "\n \t");
 	for (a = 0; tok_u_input != NULL && key[a].opcode != NULL; a++)
 	{
-		if (strcmp(tok_u_input, key[a].opcode) == 0 &&
-		    strcmp(tok_u_input, "push") == 0)
+		if (strcmp(tok_u_input, key[a].opcode) == 0)
 		{
-			output = strtok(NULL, "\n \t");
-			if (output != NULL)
-				Chk(key, output, stk, l_num, a);
-			else if (output == NULL)
+			if (strcmp(tok_u_input, "push") == 0)
 			{
-				printf("L%d: usage: push integer\n", l_num);
-				errorHandling = 1;
+				output = strtok(NULL, "\n \t");
+				if (output == NULL)
+				{
+					printf("L%d: usage: push ", l_num);
+					printf("integer\n");
+					errorHandling = 1;
+				}
+				else if (output != NULL)
+					Chk(key, output, stk, l_num, a);
 			}
 			else if (strcmp(tok_u_input, "nop") == 0)
 				continue;
