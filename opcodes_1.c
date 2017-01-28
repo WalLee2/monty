@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "monty_proto.h"
 /**
  *push_func - opcode that calls add_node to start creating the linked list.
  *@stack: Reference to the linked list.
@@ -37,7 +37,7 @@ void pint_func(stack_t **stack, unsigned int num)
 		printf("%d\n", (*stack)->n);
 	else
 	{
-		printf("L<%d>: can't pint, stack empty\n", num);
+		printf("L%d: can't pint, stack empty\n", num);
 		errorHandling = 1;
 	}
 }
@@ -51,16 +51,13 @@ void pop_func(stack_t **stack, unsigned int num)
 	stack_t *temp;
 
 	temp = *stack;
-	if (stack != NULL)
+	if (temp != NULL)
 	{
-		while ((*stack)->prev != NULL)
-		{
-			*stack = (*stack)->prev;
-			printf("pop_func: %d\n", temp->n);
-		}
+		printf("pop_func: %d\n", temp->n);
 		*stack = (*stack)->next;
 		free(temp);
-		(*stack)->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = NULL;
 		return;
 	}
 	printf("L%d: can't pop an empty stack", num);
