@@ -22,7 +22,6 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 	{
 		if (strcmp(tok_u_input, key[a].opcode) == 0)
 		{
-			printf("tok_u_input = %s\n", tok_u_input);
 			if (strcmp(tok_u_input, "push") == 0)
 			{
 				output = strtok(NULL, "\n \t");
