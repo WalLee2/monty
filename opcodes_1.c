@@ -59,7 +59,7 @@ void pop_func(stack_t **stack, unsigned int num)
 			(*stack)->prev = NULL;
 		return;
 	}
-	printf("L%d: can't pop an empty stack", num);
+	printf("L%d: can't pop an empty stack\n", num);
 	errorHandling = 1;
 }
 /**
