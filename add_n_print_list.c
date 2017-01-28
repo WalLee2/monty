@@ -14,7 +14,7 @@ int add_node(stack_t **head, unsigned int num)
 	if (new == NULL)
 	{
 		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		errorHandling = 1;
 	}
 	if (*head != NULL)
 	{
