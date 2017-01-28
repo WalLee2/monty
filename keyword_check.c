@@ -7,8 +7,7 @@
  */
 void keyw_check(char *u_input, int l_num, stack_t **stk)
 {
-	char *output, *tok_u_input;
-	int a;
+	char *output, *tok_u_input; int a;
 	instruction_t key[] = {
 		{"push", push_func},
 		{"pall", pall_func},
@@ -18,7 +17,6 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 		{"add", add_func},
 		{NULL, NULL}
 	};
-
 	tok_u_input = strtok(u_input, "\n \t");
 	for (a = 0; tok_u_input != NULL && key[a].opcode != NULL; a++)
 	{
@@ -40,8 +38,12 @@ void keyw_check(char *u_input, int l_num, stack_t **stk)
 				continue;
 			else
 				key[a].f(stk, l_num);
+			break;
 		}
 	}
-	printf("L%d: unknown instruction %s\n", l_num, u_input);
-	errorHandling = 1;
+	if (key[a].opcode == NULL)
+	{
+		printf("L%d:unknown instruction %s\n", l_num, u_input);
+		errorHandling = 1;
+	}
 }
