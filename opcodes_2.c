@@ -10,17 +10,16 @@ void add_func(stack_t **stack, unsigned int num)
 	stack_t *temp;
 
 	temp = *stack;
-	(*stack) = (*stack)->next;
-	if (temp == NULL)
+	if (temp == NULL || temp->next == NULL)
 	{
-		printf("L<%d>: can't add, stack too short\n", num);
+		printf("L%u: can't add, stack too short\n", num);
 		errorHandling = 1;
 	}
-	else
+	if (errorHandling != 1)
 	{
-		(*stack)->n = temp->n + (*stack)->n;
+		temp->next->n = temp->next->n + temp->n;
+		*stack = (*stack)->next;
 		free(temp);
-		temp = *stack;
 		(*stack)->prev = NULL;
 	}
 }

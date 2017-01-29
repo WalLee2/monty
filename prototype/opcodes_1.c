@@ -11,7 +11,7 @@ void push_func(stack_t **stack, unsigned int num)
 	outcome = add_node(stack, num);
 	if (outcome != 0)
 	{
-		printf("L<%d>: usage: push integer\n", num);
+		printf("L%d: usage: push integer\n", num);
 		errorHandling = 1;
 	}
 }
@@ -37,7 +37,7 @@ void pint_func(stack_t **stack, unsigned int num)
 		printf("%d\n", (*stack)->n);
 	else
 	{
-		printf("L<%d>: can't pint, stack empty\n", num);
+		printf("L%d: can't pint, stack empty\n", num);
 		errorHandling = 1;
 	}
 }
@@ -51,19 +51,16 @@ void pop_func(stack_t **stack, unsigned int num)
 	stack_t *temp;
 
 	temp = *stack;
-	if (stack != NULL)
+	if (temp != NULL)
 	{
-		while ((*stack)->prev != NULL)
-		{
-			*stack = (*stack)->prev;
-			printf("pop_func: %d\n", temp->n);
-		}
+		printf("pop_func: %d\n", temp->n);
 		*stack = (*stack)->next;
 		free(temp);
-		(*stack)->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = NULL;
 		return;
 	}
-	printf("L<%d>: can't pop an empty stack", num);
+	printf("L%d: can't pop an empty stack", num);
 	errorHandling = 1;
 }
 /**
@@ -80,7 +77,7 @@ void swap_func(stack_t **stack, unsigned int num)
 	temp = temp->next;
 	if (temp == NULL)
 	{
-		printf("L<%d>: can't swap, stack too short\n", num);
+		printf("L%d: can't swap, stack too short\n", num);
 		errorHandling = 1;
 	}
 	else

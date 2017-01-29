@@ -1,21 +1,5 @@
 #include "monty.h"
 /**
- *push_func - opcode that calls add_node to start creating the linked list.
- *@stack: Reference to the linked list.
- *@num: The line number being evaluated.
- */
-void push_func(stack_t **stack, unsigned int num)
-{
-	int outcome;
-
-	outcome = add_node(stack, num);
-	if (outcome != 0)
-	{
-		printf("L<%d>: usage: push integer\n", num);
-		errorHandling = 1;
-	}
-}
-/**
  *pall_func - function that is called to print everything to stdout.
  *@stack: Reference to the linked list.
  *@num: The line number being evaluated.
@@ -35,9 +19,9 @@ void pint_func(stack_t **stack, unsigned int num)
 
 	if (*stack != NULL)
 		printf("%d\n", (*stack)->n);
-	else
+	else if (*stack == NULL)
 	{
-		printf("L<%d>: can't pint, stack empty\n", num);
+		printf("L%u: can't pint, stack empty\n", num);
 		errorHandling = 1;
 	}
 }
@@ -51,19 +35,15 @@ void pop_func(stack_t **stack, unsigned int num)
 	stack_t *temp;
 
 	temp = *stack;
-	if (stack != NULL)
+	if (temp != NULL)
 	{
-		while ((*stack)->prev != NULL)
-		{
-			*stack = (*stack)->prev;
-			printf("pop_func: %d\n", temp->n);
-		}
 		*stack = (*stack)->next;
 		free(temp);
-		(*stack)->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = NULL;
 		return;
 	}
-	printf("L<%d>: can't pop an empty stack", num);
+	printf("L%u: can't pop an empty stack\n", num);
 	errorHandling = 1;
 }
 /**
@@ -77,16 +57,15 @@ void swap_func(stack_t **stack, unsigned int num)
 	int help;
 
 	temp = *stack;
-	temp = temp->next;
-	if (temp == NULL)
+	if (temp == NULL || temp->next == NULL)
 	{
-		printf("L<%d>: can't swap, stack too short\n", num);
+		printf("L%u: can't swap, stack too short\n", num);
 		errorHandling = 1;
 	}
-	else
+	if (errorHandling != 1)
 	{
 		help = temp->n;
-		temp->n = (*stack)->n;
-		(*stack)->n = help;
+		temp->n = temp->next->n;
+		temp->next->n = help;
 	}
 }

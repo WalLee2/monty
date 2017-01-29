@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
 	num = 0;
 	for (l_num = 1; (getline(&u_input, &num, fp)) != -1; l_num++)
 	{
-		keyw_check(u_input, l_num, &head);
+		if (strcmp(u_input, "nop"))
+			keyw_check(u_input, l_num, &head);
 		if (errorHandling != 0)
 		{
 			free_this(u_input, head, fp);

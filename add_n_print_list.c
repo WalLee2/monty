@@ -4,7 +4,7 @@
  *The framework for the stack and queue.
  *@head: The pointer that will hold reference to the list.
  *@num: The line number currently being evaluated.
- *Return - 0 on success, -1 on failure.
+ *Return: 0 on success.
  */
 int add_node(stack_t **head, unsigned int num)
 {
@@ -12,7 +12,10 @@ int add_node(stack_t **head, unsigned int num)
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		return (-1);
+	{
+		printf("Error: malloc failed\n");
+		errorHandling = 1;
+	}
 	if (*head != NULL)
 	{
 		while ((*head)->prev != NULL)

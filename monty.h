@@ -33,16 +33,18 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void keyw_check(char *u_input, int l_num, stack_t **stk);
-void Chk(instruction_t key[], const char *out, stack_t **stack, int l_n, int a);
+int keyw_check(char *u_input, unsigned int l_num, stack_t **stk);
+int Chk(const char *out, unsigned int l_n);
 void push_func(stack_t **stack, unsigned int num);
 void print_list(stack_t **head);
 void pall_func(stack_t **stack, unsigned int num);
 int add_node(stack_t **head, unsigned int num);
+int find_op(char *tok_u_input, stack_t **stack, unsigned int l_num);
 void pint_func(stack_t **stack, unsigned int num);
 void swap_func(stack_t **stack, unsigned int num);
 void add_func(stack_t **stack, unsigned int num);
 void pop_func(stack_t **stack, unsigned int num);
 void free_this(char *u_input, stack_t *head, FILE *fp);
+int if_op_push(char *tok_u_input);
 void free_stack(stack_t *head);
 #endif
