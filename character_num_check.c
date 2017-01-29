@@ -1,28 +1,25 @@
 #include "monty.h"
 /**
  *Chk - Checks to see if the input made by the user is an int or not
- *@key: The array of structs that looks for the opcode string.
  *@out: The next character in the same string of the user input
- *@stack: The reference to head for the doubly linked list.
  *@l_n: Line number of the user input being evaluated.
- *@a: The reference to the array of structs when finding the opcode.
+ *Return: 0 on success, 1 on failure/error
  */
-void Chk(instruction_t key[], const char *out, stack_t **stack, int l_n, int a)
+int Chk(const char *out, unsigned int l_n)
 {
-	int num, i, check;
+	int i, check;
 
-	num = i = check = 0;
+	i = check = 0;
 	if (out == NULL)
-		return;
+		return (1);
 	for (i = 0; out[i] != '\0'; i++)
 	{
 		if (out[i] < '0' || out[i] > '9')
 		{
 			printf("L%d: usage: push integer\n", l_n);
 			errorHandling = 1;
-			return;
+			return (1);
 		}
 	}
-	num = atoi(out);
-	key[a].f(stack, num);
+	return (0);
 }
