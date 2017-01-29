@@ -35,7 +35,7 @@ void pint_func(stack_t **stack, unsigned int num)
 
 	if (*stack != NULL)
 		printf("%d\n", (*stack)->n);
-	else
+	else if (*stack == NULL)
 	{
 		printf("L%d: can't pint, stack empty\n", num);
 		errorHandling = 1;
@@ -73,16 +73,15 @@ void swap_func(stack_t **stack, unsigned int num)
 	int help;
 
 	temp = *stack;
-	temp = temp->next;
-	if (temp == NULL)
+	if (temp == NULL || temp->next == NULL)
 	{
 		printf("L%d: can't swap, stack too short\n", num);
 		errorHandling = 1;
 	}
-	else
+	if (errorHandling != 1)
 	{
 		help = temp->n;
-		temp->n = (*stack)->n;
-		(*stack)->n = help;
+		temp->n = temp->next->n;
+		temp->next->n = help;
 	}
 }
