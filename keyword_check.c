@@ -14,13 +14,17 @@ int keyw_check(char *u_input, unsigned int l_num, stack_t **stk)
 	check = num = 0;
 	tok_u_input = strtok(u_input, "\n \t");
 	if (tok_u_input == NULL || strcmp(tok_u_input, "nop") == 0)
+	{
+		printf("L%u: usage: push integer\n", l_num);
+		errorHandling = 1;
 		return (1);
+	}
 	if (strcmp(tok_u_input, "push") == 0)
 	{
 		output = strtok(NULL, "\n \t");
 		if (output == NULL)
 		{
-			printf("L%d: usage: push integer\n", l_num);
+			printf("L%u: usage: push integer\n", l_num);
 			errorHandling = 1;
 			return (1);
 		}

@@ -27,7 +27,7 @@ int find_op(char *tok_u_input, stack_t **stack, unsigned int l_num)
 	}
 	if (key[a].opcode == NULL)
 	{
-		printf("L%u:unknown instruction %s\n", l_num, tok_u_input);
+		printf("L%u: unknown instruction %s\n", l_num, tok_u_input);
 		errorHandling = 1;
 		return (errorHandling);
 	}
